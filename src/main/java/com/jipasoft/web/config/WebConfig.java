@@ -1,4 +1,4 @@
-package com.jipasoft.config;
+package com.jipasoft.web.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-@ComponentScan
+@ComponentScan(basePackages = { "com.jipasoft.web" })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
