@@ -10,6 +10,6 @@ public class IndexController {
 
 	@RequestMapping("/")
 	public String index() {
-		return "" + UUID.randomUUID();
+		return "Next random is " + UUID.randomUUID();
 	}
 }

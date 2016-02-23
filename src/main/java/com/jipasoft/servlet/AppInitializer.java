@@ -3,7 +3,7 @@ package com.jipasoft.servlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.jipasoft.config.RootConfig;
-import com.jipasoft.web.config.TestConfig;
+import com.jipasoft.web.config.WebConfig;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -14,7 +14,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { TestConfig.class };
+		return new Class[] { WebConfig.class };
 	}
 
 	@Override
