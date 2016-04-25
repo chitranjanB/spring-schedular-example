@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
 
+	private int i = 0;
+
 	@RequestMapping("/")
 	public String index() {
 		return "Next random is " + UUID.randomUUID();
 	}
 
-	@Scheduled(fixedRate = 1000)
+	@Scheduled(fixedRate = 5000)
 	public void message() {
-		System.out.println("prints every 1000ms");
+		System.out.printf("prints every 5000ms and increases by %d\n", i++);
 	}
 }
