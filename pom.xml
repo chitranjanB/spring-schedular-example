@@ -15,7 +15,7 @@
 		<java-version>1.8</java-version>
 		<servlet-version>3.1.0</servlet-version>
 		<jetty.maven.plugin-version>9.3.2.v20150730</jetty.maven.plugin-version>
-		<spring-version>4.2.4.RELEASE</spring-version>
+		<spring-version>4.3.3.RELEASE</spring-version>
 	</properties>
 
 	<build>
