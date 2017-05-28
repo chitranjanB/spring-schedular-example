@@ -12,3 +12,4 @@ buildNumber.properties
 .metadata
 *.log
 build/
+.springBeans
