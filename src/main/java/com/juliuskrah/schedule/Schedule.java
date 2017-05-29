@@ -15,8 +15,11 @@
 */
 package com.juliuskrah.schedule;
 
-import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -26,8 +29,16 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class Schedule {
 
+	@Autowired
+	private NamedParameterJdbcTemplate jdbcTemplate;
+
 	@Scheduled(cron = "${cron.time}")
 	public void message() {
-		log.info("The current time is {}", LocalTime.now());
+		final String sql = "select count(*) from users u where u.enabled = :enabled";
+		final Map<String, Boolean> paramMap = new HashMap<>();
+		paramMap.put("enabled", false);
+		
+		final int size = jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
+		log.info("Result size {}", size);
 	}
 }

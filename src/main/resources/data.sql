@@ -1,3 +1,40 @@
 INSERT INTO users VALUES
     ('juliuskrah', 'julius123', true),
-    ('deborahofosu', 'deborah123', true);
+    ('deborahofosu', 'deborah123', true),
+	('louisofosuansah', 'louis123', false),
+	('frederickagyekumwordie', 'frederick123', false),
+	('fredboahen', 'fred123', true),
+	('georgekofinanor', 'george123', true),
+	('kofibooheneafari', 'kofi123', true),
+	('davidoteng', 'david123', true),
+	('samiraannarfi', 'samira123', false),  
+	('edemkoamiagbenyo', 'edem123', true),
+	('prempehgyan', 'prempeh123', true),
+	('nanaamgyei', 'nana123', true),
+	('sweetieannang', 'sweetie123', true),
+	('seshachalaramprakash', 'seshachala123', true),
+	('michaelagyemanowusu', 'michael123', false);
+	
+
+INSERT INTO authorities VALUES
+	('juliuskrah', 'ROLE_ADMIN'),
+	('juliuskrah', 'ROLE_AUDIT'),
+	('deborahofosu', 'ROLE_USER'),
+	('louisofosuansah', 'ROLE_USER'),
+	('frederickagyekumwordie', 'ROLE_USER'),
+	('fredboahen', 'ROLE_USER'),
+	('georgekofinanor', 'ROLE_USER'),
+	('kofibooheneafari', 'ROLE_USER'),
+	('davidoteng', 'ROLE_USER'),
+	('samiraannarfi', 'ROLE_AUDIT'),
+	('edemkoamiagbenyo', 'ROLE_USER'),
+	('prempehgyan', 'ROLE_USER'),
+	('nanaamgyei', 'ROLE_USER'),
+	('sweetieannang', 'ROLE_USER'),
+	('seshachalaramprakash', 'ROLE_USER'),
+	('davidoteng', 'ROLE_AUDIT'),
+	('samiraannarfi', 'ROLE_USER'),
+	('michaelagyemanowusu', 'ROLE_USER'),
+	('prempehgyan', 'ROLE_AUDIT'),
+	('nanaamgyei', 'ROLE_AUDIT');
+	
