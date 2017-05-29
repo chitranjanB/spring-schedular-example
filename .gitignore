@@ -13,3 +13,6 @@ buildNumber.properties
 *.log
 build/
 .springBeans
+bin/
+.gradle/
+.vscode/
