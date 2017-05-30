@@ -1,15 +1,20 @@
 # Spring Scheduling Example
 ## About
-This is a project that explores the beauty of [Task Executor and Scheduling](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/scheduling.html).
+This branch contains the initial code required to follow the tutorial at juliuskrah.com.
 
 ## Prerequisites
-- Maven
+- Maven (Optional)
 - Java 8+
 
 ## Running the Sample
-Import into IDE and run `Application.java` class
+Just execute:
+
+```bash
+mvnw spring-boot:run
+```
+
+from the commandline.
 
 ## Features
-- Spring Task Executor
-- Spring Schedular using `cron` jobs
+- Initial Database migration
 
