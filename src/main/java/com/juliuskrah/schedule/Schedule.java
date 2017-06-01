@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -30,15 +30,27 @@ import lombok.extern.slf4j.Slf4j;
 public class Schedule {
 
 	@Autowired
-	private NamedParameterJdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 
 	@Scheduled(cron = "${cron.time}")
-	public void message() {
-		final String sql = "select count(*) from users u where u.enabled = :enabled";
-		final Map<String, Boolean> paramMap = new HashMap<>();
-		paramMap.put("enabled", false);
-		
-		final int size = jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
-		log.info("Result size {}", size);
+	public void scheduledTask() {
+		log.info("Scheduled job is starting...");
+
+		log.info("Running query to determine total user records...");
+		String sql = "SELECT COUNT(*) FROM users";
+		int size = jdbcTemplate.queryForObject(sql, Integer.class);
+		log.info("{} total user record(s) found", size);
+
+		log.info("Running query to determine total inactive user records...");
+		sql = "SELECT COUNT(*) FROM users u WHERE u.enabled = ?";		
+		size = jdbcTemplate.queryForObject(sql, new Object[]{ false }, Integer.class);
+		log.info("{} total inactive user record(s) found", size);
+
+		log.info("Running query to delete inactive user records...");
+		sql = "DELETE FROM users u WHERE u.enabled = ?";
+		jdbcTemplate.update(sql, new Object[]{ false });
+		sql = "SELECT COUNT(*) FROM users";
+		size = jdbcTemplate.queryForObject(sql, Integer.class);
+		log.info("{} total user record(s) found after removing inactive users", size);
 	}
 }
