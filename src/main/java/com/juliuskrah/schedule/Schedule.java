@@ -32,7 +32,7 @@ public class Schedule {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	@Scheduled(cron = "${cron.time}")
+	@Scheduled(cron = "${cron.time}", zone = "Africa/Accra")
 	public void scheduledTask() {
 		log.info("Scheduled job is starting...");
 
@@ -51,6 +51,6 @@ public class Schedule {
 		jdbcTemplate.update(sql, new Object[]{ false });
 		sql = "SELECT COUNT(*) FROM users";
 		size = jdbcTemplate.queryForObject(sql, Integer.class);
-		log.info("{} total user record(s) found after removing inactive users", size);
+		log.info("{} total user record(s) found after deleting inactive users", size);
 	}
 }

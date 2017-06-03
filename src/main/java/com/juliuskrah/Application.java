@@ -15,23 +15,46 @@
 */
 package com.juliuskrah;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
+import com.juliuskrah.execute.Execute;
+
+@EnableAsync
 @EnableScheduling
 @SpringBootApplication
 public class Application {
+	@Autowired
+	private Execute execute;
 
 	public static void main(String... args) {
 		SpringApplication.run(Application.class, args);
 	}
 
 	@Bean
-	public ThreadPoolTaskScheduler taskScheduler(){
+	public ThreadPoolTaskScheduler taskScheduler() {
 		return new ThreadPoolTaskScheduler();
 	}
 
+    @Bean
+	public ThreadPoolTaskExecutor taskExecutor() {
+		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+		taskExecutor.setCorePoolSize(5);
+		taskExecutor.setMaxPoolSize(10);
+		taskExecutor.setQueueCapacity(100);
+		return taskExecutor;
+	}
+
+	@PostConstruct
+    public void init() {
+        execute.insertBatch();
+    }
 }
